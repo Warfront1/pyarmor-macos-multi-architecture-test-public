@@ -1,0 +1,24 @@
+name: CI/CD
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: macos-13
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11.3'
+
+      - id: bp1
+        name: Build
+        run: |
+          arch
+          ./build.sh
