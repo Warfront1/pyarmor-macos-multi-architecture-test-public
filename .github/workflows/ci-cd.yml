@@ -21,4 +21,5 @@ jobs:
         name: Build
         run: |
           arch
+          chmod +x ./build.sh
           ./build.sh
