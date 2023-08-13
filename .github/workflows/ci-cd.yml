@@ -18,6 +18,6 @@ jobs:
           python3 -m venv ~/macos-venv/ && chmod +x ~/macos-venv/bin/activate && ~/macos-venv/bin/activate
           pip install --upgrade --force-reinstall pyinstaller==5.11.0 pyarmor==8.3.1
           mkdir -p "./src/main/python" && touch "./src/main/python/test.py"
-          pyi-makespec --name test --target-architecture universal2 ./src/main/python/test.py"
+          pyi-makespec --name test --target-architecture universal2 ./src/main/python/test.py
           pyinstaller ./test.spec
           pyarmor gen --platform darwin.x86_64,darwin.arm64 --pack ./dist/test ./src/main/python/*
