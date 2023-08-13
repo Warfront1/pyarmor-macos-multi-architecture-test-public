@@ -14,7 +14,7 @@ jobs:
           python-version: '3.11.3'
       - name: Build
         run: |
-          rm -rf ./dist ./build ./.pyarmor ~/macos-build-venv ./test.spec ./obfdist ./test_run_logs.txt
+          rm -rf ./dist ./build ./.pyarmor ~/macos-venv ./test.spec ./obfdist ./test_run_logs.txt
           python3 -m venv ~/macos-venv/ && chmod +x ~/macos-venv/bin/activate && && ~/macos-venv/bin/activate
           pip install --upgrade --force-reinstall pyinstaller==5.11.0 pyarmor==8.3.1
           touch ./src/main/python/test.py
