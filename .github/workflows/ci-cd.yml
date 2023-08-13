@@ -16,4 +16,4 @@ jobs:
           pyi-makespec --name test --target-architecture universal2 ./src/main/python/test.py
           pyinstaller ./test.spec
           ls -a ./dist
-          pyarmor gen --platform darwin.x86_64,darwin.arm64 --pack ./dist/test.app/Contents/MacOS/test ./src/main/python/*
+          pyarmor gen --platform darwin.x86_64,darwin.arm64 --pack ./dist/test ./src/main/python/*
