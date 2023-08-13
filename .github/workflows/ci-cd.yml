@@ -1,25 +1,23 @@
 name: CI/CD
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
 jobs:
-
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
-
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11.3'
-
-      - id: bp1
-        name: Build
+      - name: Build
         run: |
-          arch
-          chmod +x ./build.sh
-          ./build.sh
+          rm -rf ./dist ./build ./.pyarmor ~/macos-build-venv ./test.spec ./obfdist ./test_run_logs.txt
+          python3 -m venv ~/macos-build-venv/ && ~/macos-build-venv/bin/activate
+          pip install --upgrade --force-reinstall pyinstaller==5.11.0 pyarmor==8.3.1
+          touch ./src/main/python/test.py
+          pyi-makespec --name test --target-architecture universal2 ./src/main/python/test.py"
+          pyinstaller ./test.spec
+          pyarmor gen --platform darwin.x86_64,darwin.arm64 --pack ./dist/test ./src/main/python/*
